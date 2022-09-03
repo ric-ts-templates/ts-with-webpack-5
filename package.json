@@ -1,0 +1,17 @@
+{
+  "author": "R PYT",
+  "name": "@rick.info.dev/my-ts-model-project-via-webpack5",
+  "version": "1.0.0",
+  "license": "ISC",
+  "description": "",
+  "scripts": {
+    "build": "webpack --progress --profile --watch ",
+    "b": "npm run build"
+  },
+  "devDependencies": {
+    "ts-loader": "^9.3.1",
+    "tsconfig-paths-webpack-plugin": "^4.0.0",
+    "webpack": "^5.74.0",
+    "webpack-cli": "^4.10.0"
+  }
+}
