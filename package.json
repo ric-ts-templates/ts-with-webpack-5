@@ -6,7 +6,8 @@
   "description": "",
   "scripts": {
     "build": "webpack --progress --profile --watch ",
-    "b": "npm run build"
+    "b": "npm run build -- --config ./zMyWebPackConfigs/webpack.config.dev.js --env MyEnvVarSiJeVeux=9",
+    "bp": "npm run build -- --config ./zMyWebPackConfigs/webpack.config.prod.js"
   },
   "devDependencies": {
     "ts-loader": "^9.3.1",

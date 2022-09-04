@@ -16,6 +16,7 @@
                         // Pour SystemJS : ne fonctionnera PAS avec la valeur "es6".
                         //                 mais Ok avec "amd", "system", "umd", commonJS".
 
+                        
     //,"moduleResolution": "Node" //La Val. par défaut est "Classic" si l'option module vaut "ES2015" | "AMD" | "System".
                                   //Sinon vaut     : "Node" 
     ,"moduleResolution": "Node" //<<< NÉCESSAIRE en effet, si target haut dessus de "es5", comme ici.
@@ -60,10 +61,10 @@
     //            2b- aucun élément du tableau associé ne match, alors la recherche avec paths est abandonnée
     //                ET la recherche avec baseUrl toute seule est AUSSI abandonnée !! <<<<<<
     ,"paths": { //<<Sous WEBPACK "paths" est pris en compte grâce au plugin installé en plus : tsconfig-paths-webpack-plugin
-      
+      /*
       //Clef "*" => signifie recherche à faire pour tout module à import non-relatif
       //            Cette "*" représente tout simplement le nom du module à chercher <<<<
-     /* "*" :[ //Ici les "**" sont interdits, contrairement à la directive "include"
+      "*" :[ //Ici les "**" sont interdits, contrairement à la directive "include"
         //"*",   //le nom du module à chercher tel quel, dans baseUrl donc.
         "GG/*" //le nom du module à chercher précédé par le chemin baseUrl/GG/
       ],
