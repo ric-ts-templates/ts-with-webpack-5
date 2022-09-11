@@ -15,7 +15,9 @@ class MyCommonConfigurationClass {
          //                 du répertoire de build.    
          // Ce allJS.bundle.js sera bien sûr à inclure dans index.html, via <script src="...">.
          // NECESSITE bien sûr un TS loader(parse/transpile des TS pour les intégrer au bundle) 
-            "js/allJS": ["./_src/app/index.ts"], 
+            "js/allJS": [
+              "./_src/app/index.ts"
+            ], 
     
     
          // 2eme bundle :  plusieurs régles .css, mergées en 1 bundle à partir de fichiers .css.
@@ -28,10 +30,9 @@ class MyCommonConfigurationClass {
          //             les règles .css évoquées, feront bien leur effet sur l'html !
          // NECESSITE bien sûr un css loader(lecture des css pour les intégrer au dit bundle) 
          //          + un style loader (rendre ces règles css exploitables par du html)
-            // "css/allCSS": [
-            //   "./_src/app/css/styles1.css", 
-            //   "./_src/app/css/styles2.css", 
-            // ],
+            "css/allCSS": [
+              "./_src/css/index.css", 
+            ],
     
       }
       ,output: {
@@ -57,14 +58,14 @@ class MyCommonConfigurationClass {
             ]
           },
     
-          // //Pour gestion des fichiers .css
-          // {
-          //   test: /\.css$/  //Extension des fichiers à traiter (ne pas mettre entre guillemets !)
-          //   ,use: [ 
-          //      { loader: "style-loader" }, //Gestion de l'inclusion des styles détectés.
-          //      { loader: "css-loader" } //Parse et rend utilisable le contenu des fichiers .css
-          //   ] ///<<<<<< ATTENTION : IL FAUT mettre "style-loader" avant "css-loader" sinon plantage !! <<<<<<<<
-          // },
+          //Pour gestion des fichiers .css
+          {
+            test: /\.css$/  //Extension des fichiers à traiter (ne pas mettre entre guillemets !)
+            ,use: [ 
+               { loader: "style-loader" }, //Gestion de l'inclusion des styles détectés.
+               { loader: "css-loader" } //Parse et rend utilisable le contenu des fichiers .css
+            ] ///<<<<<< ATTENTION : IL FAUT mettre "style-loader" avant "css-loader" sinon plantage !! <<<<<<<<
+          },
           
         ]
       }

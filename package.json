@@ -1,15 +1,18 @@
 {
-  "author": "R PYT",
-  "name": "@rick.info.dev/my-ts-model-project-via-webpack5",
-  "version": "1.0.0",
+  "name": "ts-model-project",
+  "version": "0.0.0",
+  "description": "TS model project",
+  "author": "Richard PAYET",
   "license": "ISC",
-  "description": "",
   "scripts": {
     "build": "webpack --progress --profile --watch ",
     "b": "npm run build -- --config ./zMyWebPackConfigs/webpack.config.dev.js --env MyEnvVarSiJeVeux=9",
     "bp": "npm run build -- --config ./zMyWebPackConfigs/webpack.config.prod.js"
   },
+  "types": "",
   "devDependencies": {
+    "css-loader": "^6.7.1",
+    "style-loader": "^3.3.1",
     "ts-loader": "^9.3.1",
     "tsconfig-paths-webpack-plugin": "^4.0.0",
     "webpack": "^5.74.0",

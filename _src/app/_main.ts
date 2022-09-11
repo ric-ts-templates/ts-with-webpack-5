@@ -1,21 +1,22 @@
-import { Temp } from "./../lib"; //mon dossier lib/ contient bien un index.ts qui exporte la classe Temp.
-
-
-//Tient compte du param. paths dans tsconfig.json uniquement grâce au plugin : tsconfig-paths-webpack-plugin
-import { Temp2 } from "@myOtherLib/sousDossier"; //Classe Temp2 exportée via autreLib/sousDossier/index.ts.
-import { Temp22 } from "@myOtherLib/sousDossier/Temp22"; //Je n'ai pas mis (exprès) l'export de la classe
-                                                         //Temp22, dans autreLib/sousDossier/index.ts
-                                                         //contrairement à ce que j'ai fait poour la classe 
-                                                         //Temp2.
+import { MyCalculator_TS } from "@myCalculatorsTSLib/MyCalculator_TS";
 
 
 export class Main {
     public run(): void {
-        console.log(`READY`);
-        
-        (new Temp()).sayHello();
-        (new Temp22()).sayNice();
-        (new Temp2()).sayGoodbye();
-    }
 
+        this.test1();
+    }
+    
+    private test1() {
+        
+        //================= TS ==========================
+        console.log(`\n\n================= Utilisation par Typescript, d'une classe d'un source .ts, après forçage d'un TYPAGE FORT pour son constructeur ==================\n\n`);
+        // const oCalculator_TS: ICalculator = new MyCalculator_TS("10"); //INTERDIT car grâce à ICalculatorConstructor, j'ai pu imposer
+                                                                         //  que le param. du constructeur soit un number.
+        const oCalculator_TS: ICalculator = new MyCalculator_TS(10);
+        console.log(oCalculator_TS.getResult(5) === 10*5); //true
+        // oCalculator_TS.getAutreX(); //INTERDIT: évidemment car cette méthode appartient à la classe MyCalculator_TS MAIS pas à l'interface ICalculator !
+
+    }
+    
 }

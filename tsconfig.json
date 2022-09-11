@@ -1,22 +1,22 @@
 {
+  "include": [
+    "_src", // <<<Pour imposer que ce seront UNIQUEMENT les .ts, .d.ts et .js(si allowJs), de toute l'arbo. ./_src/ 
+            //    qui interviendront dans le processus de compil. et transpilation. Syntaxe équivalente à la syntaxe : _src/**/*
+  ], //REM.: par défaut "node_modules" N'est PAS inclus dans ce processus <<<<<<<<<<
+
+  
   "compilerOptions": {
 
-    "target": "ES2020" //Désormais tous les navigateurs modernes supportent ES6+ ! Donc pas de prise de tête inutile avec "ES5" !
+    "target": "es2020" //Désormais tous les navigateurs modernes supportent ES6+ ! Donc pas de prise de tête inutile avec "ES5" !
 
-    //,"sourceMap": true
+    // ,"outDir": "./_build"    
 
-    //,"outDir": "./_build"    
-    
     //,"watch": true
 
-    //,"module": "amd"  //Val. par défaut : "ES2015"("es6") si target supérieur à "ES5", sinon "CommonJS". 
-                        //Par contre, INDISPENSABLE pour q'un modules Loader puisse exploiter
-                        //le code compilé.
-                        //Seules les valeurs "amd" ou "umd" seront fonctionnelles pour requirejs. 
-                        // Pour SystemJS : ne fonctionnera PAS avec la valeur "es6".
-                        //                 mais Ok avec "amd", "system", "umd", commonJS".
+    // ,"allowJs": true  //INDISPENSABLE pour que les .js sources puissent être mis au format 
+                      // target, dans le répertoire outDir.
 
-                        
+                       
     //,"moduleResolution": "Node" //La Val. par défaut est "Classic" si l'option module vaut "ES2015" | "AMD" | "System".
                                   //Sinon vaut     : "Node" 
     ,"moduleResolution": "Node" //<<< NÉCESSAIRE en effet, si target haut dessus de "es5", comme ici.
@@ -26,12 +26,18 @@
                              //modules qu'on lui demande d'importer.
                              //Rem.: les ambient modules n'apparaîtront pas dans la recherche.
 
-                     
+    
+    //,"sourceMap": true
 
-    //,"allowJs": true  //INDISPENSABLE pour que les .js sources puissent être mis au format 
-                        //target, dans le répertoire outDir.
 
-                      
+                       
+    //,"module": "amd"  //Val. par défaut : "ES2015"("es6") si target supérieur à "ES5", sinon "CommonJS". 
+                        //Par contre, INDISPENSABLE pour q'un modules Loader puisse exploiter
+                        //le code compilé.
+                        //Seules les valeurs "amd" ou "umd" seront fonctionnelles pour requirejs. 
+                        // Pour SystemJS : ne fonctionnera PAS avec la valeur "es6".
+                        //                 mais Ok avec "amd", "system", "umd", commonJS".
+
     //,"experimentalDecorators": true
 
   
@@ -41,7 +47,7 @@
     
     //-----------------------------------------------------------------------------------------------------
     //baseUrl: chemin relatif au présent dossier, et où le compilo. ira chercher les modules à importer 
-    //pour lesquels on n'a pas préciseé de chemin Relatif lors de la syntaxe d'import.
+    //pour lesquels on n'a pas précisé de chemin Relatif lors de la syntaxe d'import.
     // ATTENTION ! Si précisé donc, la tentative de Résolution du chemin de ces fichiers à importer 
     //sans chemin relatif, COMMENCERA par une recherche avec le chemin relatif: baseUrl !!
     //Sauf peut-être si paths (voir ci-dessous) est précisé.
@@ -60,12 +66,13 @@
     //            2a- si un élément du tableau associé match, eh bien ok le module est trouvé. Fin de la recherche.
     //            2b- aucun élément du tableau associé ne match, alors la recherche avec paths est abandonnée
     //                ET la recherche avec baseUrl toute seule est AUSSI abandonnée !! <<<<<<
-    ,"paths": { //<<Sous WEBPACK "paths" est pris en compte grâce au plugin installé en plus : tsconfig-paths-webpack-plugin
+    ,"paths": { //<<Sous WEBPACK "paths" est pris en compte grâce au plugin installable en plus : tsconfig-paths-webpack-plugin
       /*
+
       //Clef "*" => signifie recherche à faire pour tout module à import non-relatif
       //            Cette "*" représente tout simplement le nom du module à chercher <<<<
-      "*" :[ //Ici les "**" sont interdits, contrairement à la directive "include"
-        //"*",   //le nom du module à chercher tel quel, dans baseUrl donc.
+      "*" :[ //Ici les "**" sont interdits, contrairement à l'option' "include"
+        "*",   //le nom du module à chercher tel quel, dans baseUrl donc.
         "GG/*" //le nom du module à chercher précédé par le chemin baseUrl/GG/
       ],
 
@@ -81,10 +88,11 @@
       "nimp*" : ["../../node_modules/tstt/nimporte"],  //chemin relatif à baseUrl je rappelle.
       
       //Clef "@*"
-      "@*": ["../../node_modules/*"] //<<<Sinon "@..." n'est pas considéré par le compilo., comme ayant un lien avec un dossier node_modules !
+      "@*": ["../../node_modules/*"] //<<<Sinon "@..." n'est en effet pas considéré par le compilo., comme ayant un lien avec un dossier node_modules !
+
      */
 
-     "@myOtherLib*": ["_src/autreLib*"]
+      "@myCalculatorsTSLib*": ["_src/lib/TS*"]
     
     }
 
@@ -94,17 +102,4 @@
     //-----------------------------------------------------------------------------------------------------
     
   }
-
-  //"include" permet de forcer la génération de .js, à partir de .ts sources, dont on précisera le chemin.
-  //ATENTION: par défaut les éventuels .ts situés dans node_modules/., ne seront pas considérés,
-  // SAUF si on les mentionne explicitement ci-dessous donc.
-  //,"include": [
-  //    "./**/*" //Permet de spécifier qu'il faut générer un .js, pour tous les .ts depuis le présent dossier, SAUF ceux situés dans node_modules/.
-  //    , "./node_modules/@types/**/*" //Cherchera à compiler et mettre dans outDir, tout fichier ts (*), de toute l'arbo.(**) "./node_modules/@types/"
-  //]
-  //REMARQUE: comme vu plus haut,
-  //          baseUrl.... permet aussi, sous certaines conditions, de faire passer des .ts 
-  //          de node_modules (par exemple), en .js dans le outDir.
-
-
 }
