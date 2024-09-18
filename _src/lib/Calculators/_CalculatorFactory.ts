@@ -1,10 +1,10 @@
-import { MyCalculator_TS } from "./TS/MyCalculator_TS";
+import { MyCalculator_TS } from "./implems/TS/MyCalculator_TS";
 
-// import { MyCalculator_ES6 } from "./JS/ES6/MyCalculator_ES6"; //<< Version avec non typage fort des params du constructeur.
-import { MyCalculator_ES6 } from "./JS/ES6/MyCalculator_ES6_Constructor"; //pour le typage fort des params du constructeur.
+// import { MyCalculator_ES6 } from "./implems/JS/ES6/MyCalculator_ES6"; //<< Version avec non typage fort des params du constructeur.
+import { MyCalculator_ES6 } from "./implems/JS/ES6/MyCalculator_ES6_Constructor"; //pour le typage fort des params du constructeur.
 
 
-import "./JS/ES5/MyCalculator_ES5";
+import "./implems/JS/ES5/MyCalculator_ES5";
 
 
 export class CalculatorFactory
