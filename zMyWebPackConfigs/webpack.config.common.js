@@ -4,6 +4,8 @@ class MyCommonConfigurationClass {
     const oPathTool = require("path");
     const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
 
+    const assetsPath = "./_src/_assets/";
+
     const oCommonConfig = {
 
       entry: {
@@ -31,7 +33,7 @@ class MyCommonConfigurationClass {
          // NECESSITE bien sûr un css loader(lecture des css pour les intégrer au dit bundle) 
          //          + un style loader (rendre ces règles css exploitables par du html)
             "css/allCSS": [
-              "./_src/css/index.css", 
+              `${assetsPath}/css/index_GlobalCSS.css` , 
             ],
     
       }
