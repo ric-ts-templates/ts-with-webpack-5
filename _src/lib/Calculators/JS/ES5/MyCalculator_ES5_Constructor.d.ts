@@ -1,0 +1,2 @@
+declare let MyCalculator_ES5: ICalculatorConstructor; //Pour typage fort des params du constructeur de la classe ES5 : MyCalculator_ES5
+                                                      //définie dans MyCalculator_ES5.js.

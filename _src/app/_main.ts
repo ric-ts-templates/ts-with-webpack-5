@@ -1,4 +1,4 @@
-import { MyCalculator_TS } from "@myCalculatorsTSLib/MyCalculator_TS";
+import { CalculatorFactory } from "@myCalculatorsTSLib/_CalculatorFactory";
 
 
 export class Main {
@@ -8,14 +8,17 @@ export class Main {
     }
     
     private test1() {
-        
-        //================= TS ==========================
-        console.log(`\n\n================= Utilisation par Typescript, d'une classe d'un source .ts, après forçage d'un TYPAGE FORT pour son constructeur ==================\n\n`);
-        // const oCalculator_TS: ICalculator = new MyCalculator_TS("10"); //INTERDIT car grâce à ICalculatorConstructor, j'ai pu imposer
-                                                                         //  que le param. du constructeur soit un number.
-        const oCalculator_TS: ICalculator = new MyCalculator_TS(10);
-        console.log(oCalculator_TS.getResult(5) === 10*5); //true
-        // oCalculator_TS.getAutreX(); //INTERDIT: évidemment car cette méthode appartient à la classe MyCalculator_TS MAIS pas à l'interface ICalculator !
+        const n : number = 5;
+        const coeff : number = 10;
+
+        const oCalculator: ICalculator = CalculatorFactory.getCalculator(coeff);
+        const result = oCalculator.getResult(5);
+        console.log(`result=${result}`);
+
+        // console.log( result === coeff*n ); //true si MyCalculator_TS
+        // console.log( result === coeff*n*2 ); //true si MyCalculator_ES6
+        // console.log( result === coeff*n*3 ); //true si MyCalculator_ES5
+        // oCalculator.getAutreX(); //INTERDIT: évidemment car cette méthode n'appartient pas à l'interface ICalculator ! (elle n'appartient qu'au type : MyCalculator_TS).
 
     }
     

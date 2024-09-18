@@ -92,7 +92,7 @@
 
      */
 
-      "@myCalculatorsTSLib*": ["_src/lib/TS*"]
+      "@myCalculatorsTSLib*": ["_src/lib/Calculators*"]
     
     }
 
