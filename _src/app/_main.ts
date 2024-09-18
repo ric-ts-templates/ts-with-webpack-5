@@ -1,4 +1,4 @@
-import { CalculatorFactory } from "@myCalculatorsTSLib/_CalculatorFactory";
+import { CalculatorFactory } from "@MyCalculatorsLib/_CalculatorFactory";
 
 
 export class Main {
