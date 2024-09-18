@@ -15,7 +15,7 @@ export class MyCalculator_ES6 {
   }
 
 
-  getAutre() { //<<REM.: getAutre ne fait pas partie de ICalculator.
+  getAutreX() { //<<REM.: getAutre ne fait pas partie de ICalculator.
       return "zzz";
   }
 }
