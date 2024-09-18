@@ -2,9 +2,12 @@ class MyCommonConfigurationClass {
 
   getCommonConfig() {
     const oPathTool = require("path");
+
     const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
 
-    const assetsPath = "./_src/_assets/";
+    const rootSrcPath = "./_src";
+    const assetsPath = `${rootSrcPath}/_assets/`;
+    const outputPath = "./../_dist";
 
     const oCommonConfig = {
 
@@ -18,7 +21,7 @@ class MyCommonConfigurationClass {
          // Ce allJS.bundle.js sera bien sûr à inclure dans index.html, via <script src="...">.
          // NECESSITE bien sûr un TS loader(parse/transpile des TS pour les intégrer au bundle) 
             "js/allJS": [
-              "./_src/app/index.ts"
+              `${rootSrcPath}/app/index.ts`
             ], 
     
     
@@ -38,11 +41,11 @@ class MyCommonConfigurationClass {
     
       }
       ,output: {
-          path: oPathTool.resolve(__dirname, `./../_build`)        
+          path: oPathTool.resolve(__dirname, outputPath)        
           ,filename: "[name].bundle.js" //[name]  = valeur de chacune des clefs de l'objet entry ci-dessus.
                                         // Génèrera donc ces bundles :
-                                        //   ./../_build/js/allJS.bundle.js
-                                        //   ./../_build/css/allCSS.bundle.js //<<< Ok il suffira de l'inclure dans index.html via <script src="...">
+                                        //   ./../_dist/js/allJS.bundle.js
+                                        //   ./../_dist/css/allCSS.bundle.js //<<< Ok il suffira de l'inclure dans index.html via <script src="...">
       }
     
     

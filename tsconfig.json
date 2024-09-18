@@ -9,7 +9,7 @@
 
     "target": "es2022" //Désormais tous les navigateurs modernes supportent ES6+ ! Donc pas de prise de tête inutile avec "ES5" !
 
-    // ,"outDir": "./_build"
+    // ,"outDir": "./_dist"
 
     // ,"watch": true
 

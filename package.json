@@ -5,9 +5,10 @@
   "author": "Richard PAYET",
   "license": "ISC",
   "scripts": {
-    "build": "webpack --progress --profile --watch ",
+    "build": "npm run copyAssetsToOutput && webpack --progress --profile --watch ",
     "b": "npm run build -- --config ./zMyWebPackConfigs/webpack.config.dev.js --env MyEnvVarSiJeVeux=9",
-    "bp": "npm run build -- --config ./zMyWebPackConfigs/webpack.config.prod.js"
+    "bp": "npm run build -- --config ./zMyWebPackConfigs/webpack.config.prod.js",
+    "copyAssetsToOutput": ".\\_copyAssetsToOutput.bat"
   },
   "types": "",
   "devDependencies": {

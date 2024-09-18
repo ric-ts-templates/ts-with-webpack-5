@@ -5,7 +5,8 @@
     <meta charset="utf-8"/>
 
     <!-- root URL qui préfixera chaque URL ci-dessous<<<<<<<<<<<<<<<<<<<<<<< -->
-    <base href="./../_build/"/> 
+    <!-- <base href="./../_dist/"/>  -->
+    <base href="./"/> <!-- Grâce à mon _copyAssetsToOutput.bat --> <!-- Il faudra lancer le index.html du répertoire _dist/ -->
 
     <!-- css -->
     <script src="css/allCSS.bundle.js"></script>    
@@ -20,6 +21,7 @@
   </head>
   <body onload="/*alert('Body onload running : exécuté en DERNIER');*/">
     <p>HELLO !</p>
+    <img src="img/SomeGlobalImage.jpg"/>
   </body>
 </html>
 
