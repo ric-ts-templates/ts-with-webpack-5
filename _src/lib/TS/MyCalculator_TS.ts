@@ -12,6 +12,6 @@ export class MyCalculator_TS implements ICalculator { //REM.: ICalculator est d�
         return "xxx";
     }    
 }
-const MyCalculator_TS_Constructor: ICalculatorConstructor = MyCalculator_TS; //<< Oblige la classe MyCalculator_TS à avoir 
-                                                                             // pour signature de constructeur, celle que définit 
-                                                                             // ICalculatorConstructor !
+const dummy: ICalculatorConstructor = MyCalculator_TS; //<< Oblige la classe MyCalculator_TS à avoir 
+                                                       // pour signature de constructeur, celle que définit 
+                                                       // ICalculatorConstructor !
