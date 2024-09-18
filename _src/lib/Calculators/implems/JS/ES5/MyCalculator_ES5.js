@@ -6,7 +6,7 @@
 
 // Plus précisément, je veux :
 //   1. que la présente classe ES5, MyCalculator_ES5, soit connue à l'EXÉCUTION !! 
-//      ce qui est réalisé grâce au "window.MyCalculator_ES5 =" juste ci-dessous ET au  
+//      ce qui est réalisé grâce au "MyCalculator_ES5 =" juste ci-dessous ET au  
 //      un 'import "./.../MyCalculator_ES5";'.
 //   1. que MyCalculator_ES5 implémente correctement ce que décrit l'interface ICalculator (TOUS typages compris),
 //      cette vérif. sera automatiquement réalisée à la compil., face et suite à l'instruction : 
