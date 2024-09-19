@@ -12,7 +12,7 @@ class MyCommonConfigurationClass {
     const jsSubPath = "js";
     const outputAssetsSubPath = "_assets";
     const srcGlobalAssetsSubPath = "_globalAssets";
-    const cssSubPath = "css";
+    const stylesSubPath = "styles";
     const outputAssetsPath = `${outputRootPath}/${outputAssetsSubPath}`;
     const srcGlobalAssetsPath = `${srcAppRootPath}/${srcGlobalAssetsSubPath}`;
 
@@ -33,21 +33,21 @@ class MyCommonConfigurationClass {
                                     ], 
     
     
-         // 2eme bundle :  plusieurs régles .css, mergées en 1 bundle à partir de fichiers .css.
-         //                  (remarque: lorsque doublon de règle css, la dernière apparue fait foi).
+         // 2eme bundle :  plusieurs fichiers de styles, mergés en 1 bundle à partir.
+         //                (remarque: lorsque doublon de règle de style, la dernière apparue fait foi).
          //                Le nom du bundle une fois buildé, sera (cf. output.filename ci-dessous) :  
-         //                 someCSS.bundle.js et il sera mis dans le sous-dossier cssSubPath
-         //                 du répertoire : outputAssetsPath.    
-         // Ce someCSS.bundle.js sera bien sûr à inclure dans index.html, via <script src="...">.
+         //                  someStyles.bundle.js, et il sera mis dans le sous-dossier stylesSubPath
+         //                  du répertoire : outputAssetsPath.    
+         // Ce someStyles.bundle.js sera bien sûr à inclure dans index.html, via <script src="...">.
          //  Remarque : bien que ce bundle à inclure contiennent du code javascript,
-         //             les règles .css évoquées, feront bien leur effet sur l'html !
+         //             les règles de styles feront bien leur effet sur l'html !
          // NECESSITE bien sûr un css loader(lecture des css pour les intégrer au dit bundle) 
-         //          + un style loader (rendre ces règles css exploitables par du html)
-         [`${cssSubPath}/someCSS`]: [ //Mettre ici, tous les noms de css à bundler (doivent tous se trouver dans srcGlobalAssetsPath/cssSubPath).
-                                      "index" //index.css
-                                    ] 
-                                    .map(cssFileName => `${srcGlobalAssetsPath}/${cssSubPath}/${cssFileName}.css`)
-                                   ,
+         //          + un style loader (rendre ces styles exploitables par du html)
+         [`${stylesSubPath}/someStyles`]: [ //Mettre ici, tous les noms de css à bundler (doivent tous se trouver dans srcGlobalAssetsPath/stylesSubPath).
+                                            "index" //index.css
+                                          ] 
+                                          .map(stylesFileName => `${srcGlobalAssetsPath}/${stylesSubPath}/${stylesFileName}.css`)
+                                        ,
     
       }
       ,output: {

@@ -5,8 +5,8 @@ REM L'appel au présent .bat est en fait automatisé, via package.json, (lors np
 
 REM Ci-dessous, par "GLOBAL", j'entends : "propre à l'application (donc hors librairies (persos ou non))".
 REM
-REM .BAT pour la copie des images(globales et spécifiques), et des *.*css spécifiques, ainsi que de tous les *.htm*, 
-REM vers le répertoire de sortie. (Rem.: les css globaux, sont eux, gérés côté webpack (cf. fichier de config.common)).
+REM .BAT pour la copie des images(globales et spécifiques), et des *.*css spécifiques (non bundlés), ainsi que de tous les *.htm*, 
+REM vers le répertoire de sortie. (Rem.: les fichiers globaux de styles, sont eux, gérés côté webpack (cf. fichier de config.common)).
 REM  Cette façon de faire (copie), est plus simple ET MAÎTRISÉE, que l'ajout à webpack de plugins(pour les images en particulier), plugins plus ou moins compatibles... .
 
 REM >> ATTENTION : ici, utiliser des anti-slashes et non des slashes (sinon la commande COPY ..., ne passe pas !!).
@@ -15,7 +15,7 @@ REM >> ATTENTION : ici, utiliser des anti-slashes et non des slashes (sinon la c
 SET outputAssetsSubPath=_assets
 SET srcGlobalAssetsSubPath=_globalAssets
 SET imgSubPath=img
-SET cssSubPath=css
+SET stylesSubPath=styles
 
 
 SET srcRootPath=.\_src
@@ -24,13 +24,13 @@ SET srcAppRootPath=%srcRootPath%\app
 SET srcGlobalAssetsPath=%srcAppRootPath%/%srcGlobalAssetsSubPath%
 
 SET src_img_assets_to_copy=*.jpg, *.png
-SET src_css_assets_to_copy=*.*css
+SET src_styles_assets_to_copy=*.*css
 
 SET outputRootPath=.\_dist
 SET outputAssetsPath=%outputRootPath%\%outputAssetsSubPath%
 
 SET outputImgPath=%outputAssetsPath%\%imgSubPath%
-SET outputCssPath=%outputAssetsPath%\%cssSubPath%
+SET outputStylesPath=%outputAssetsPath%\%stylesSubPath%
 
 
 REM ==========================================================
@@ -44,7 +44,7 @@ CALL :CopyFiles "%srcRootPath%" "*.htm*" "%outputRootPath%"
 
 
 REM -------------- Recopie des images(globales) se trouvant dans %srcGlobalAssetsPath%/%imgSubPath%, ---------------
-REM                vers %outputImgPath%. Les css globales étant, elles, gérées ailleurs (par bundling via webpack). 
+REM                vers %outputImgPath%. Les fichiers globaux de styles étant, eux, gérés ailleurs (par bundling via webpack). 
 xcopy "%srcGlobalAssetsPath%/%imgSubPath%" "%outputImgPath%" /e/s /d/i /y
 
 
@@ -52,9 +52,9 @@ REM -------------- Recopie (à plat) des images SPÉCIFIQUES, se trouvant dans l
 REM                vers %outputImgPath% .
 CALL :CopyFiles "%srcLibsRootPath%" "%src_img_assets_to_copy%" "%outputImgPath%"
 
-REM -------------- Recopie (à plat) de css SPÉCIFIQUES non bundlés, se trouvant dans l'arborescence %srcLibsRootPath%, ---------------
-REM                vers %outputCssPath% .
-CALL :CopyFiles "%srcLibsRootPath%" "%src_css_assets_to_copy%" "%outputCssPath%"
+REM -------------- Recopie (à plat) de fichiers SPÉCIFIQUES de styles (fichiers non bundlés), se trouvant dans l'arborescence %srcLibsRootPath%, ---------------
+REM                vers %outputStylesPath% .
+CALL :CopyFiles "%srcLibsRootPath%" "%src_styles_assets_to_copy%" "%outputStylesPath%"
 
 
 
