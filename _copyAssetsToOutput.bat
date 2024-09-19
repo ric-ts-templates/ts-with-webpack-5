@@ -1,7 +1,7 @@
 @echo off
 CLS
 
-REM Pour la copie des images, ainsi que du index.htm*, vers le répertoire de sortie (l'appel au présent .bat est en fait automatique, via package.json, (lors npm run bp, notamment)).
+REM Pour la copie des images, ainsi que des *.htm*, vers le répertoire de sortie (l'appel au présent .bat est en fait automatique, via package.json, (lors npm run bp, notamment)).
 REM Cette façon de faire, est plus simple ET MAÎTRISÉE, que l'ajout à webpack de plugins(pour les images en particulier), plugins plus ou moins compatibles... .
 REM ATTENTION : ici, utiliser des anti-slashes et non des slashes (sinon la commande COPY ..., ne passe pas !!).
 
@@ -30,12 +30,14 @@ REM ==========================================================
 IF NOT EXIST "%outputRootPath%" MD "%outputRootPath%"
 
 
-REM -------------- Recopie des index.htm*, ---------------
-REM                vers %outputRootPath% 
-copy "%srcRootPath%\*.htm*" "%outputRootPath%" /y
+
+REM -------------- Recopie (à plat) des *.htm*, se trouvant dans l'arborescence %srcRootPath%, ---------------
+REM                vers %outputRootPath% .
+CALL :CopyFiles "%srcRootPath%" "*.htm*" "%outputRootPath%"
+
 
 REM -------------- Recopie des images(globales) se trouvant dans %srcGlobalAssetsPath%/%imgSubPath%, ---------------
-REM                vers %outputImgPath% 
+REM                vers %outputImgPath%. Les css globales étant, elles, gérées ailleurs (par bundling de webpack). 
 xcopy "%srcGlobalAssetsPath%/%imgSubPath%" "%outputImgPath%" /e/s /d/i /y
 
 REM -------------- Recopie (à plat) des images SPÉCIFIQUES, se trouvant dans l'arborescence %srcAppRootPath%, ---------------
