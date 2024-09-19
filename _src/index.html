@@ -5,25 +5,26 @@
   <title></title>
   <meta charset="utf-8" />
 
-  <!-- root URL qui préfixera chaque URL ci-dessous<<<<<<<<<<<<<<<<<<<<<<< -->
-  <base href="./_assets/" /> <!-- Grâce à mon _copyAssetsToOutput.bat --> <!-- Il faudra lancer le index.html du répertoire _dist/ -->
+  <!-- ATTENTION : IL FAUDRA lancer le index.html du répertoire _dist/ -->
+
+    <!-- root URL qui préfixera chaque URL ci-dessous<<<<<<<<<<<<<<<<<<<<<<< -->
+  <base href="./" /> 
 
 
   <!-- ================================ CSS ==================================================== -->
   <!-- Que les css bundlées (celles dans global assets) -->
-  <script src="css/someCSS.bundle.js"></script>
+  <script src="_assets/css/someCSS.bundle.js"></script>
 
   <!-- Pour les css non bundlées (à la mano.) -->
-  <!-- <link rel="stylesheet" href="css/toto.css"/>  -->
+  <!-- <link rel="stylesheet" href="_assets/css/toto.css"/>  -->
 
 
   <!-- =============================== JS ===================================================== -->
   <!--
        REMARQUE: dans l'éventualité où j'aurais besoin que le body soit connu 
        avant lancement de mon allJs.bundle.js, je mets en différé(defer) le chargement de ce dernier.
-       Le "../" c'est compte-tenu du base href ! 
     -->
-  <script defer src="../js/allJS.bundle.js"></script>
+  <script defer src="js/allJS.bundle.js"></script>
 
 
   <!-- ==================================================================================== -->
@@ -32,7 +33,7 @@
 
 <body onload="/*alert('Body onload running : exécuté en DERNIER');*/">
   <p>HELLO !</p>
-  <img src="img/SomeGlobalImage.jpg" />
+  <img src="_assets/img/SomeGlobalImage.jpg" />
 </body>
 
 </html>
