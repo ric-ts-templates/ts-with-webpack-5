@@ -4,10 +4,11 @@ import { CalculatorFactory } from "@MyCalculatorsLib/_CalculatorFactory";
 export class Main {
     public run(): void {
 
-        this.test1();
+        this.testLibCalculators();
+        this.openView1();
     }
     
-    private test1() {
+    private testLibCalculators() {
         const n : number = 5;
         const coeff : number = 10;
 
@@ -20,6 +21,10 @@ export class Main {
         // console.log( result === coeff*n*3 ); //true si MyCalculator_ES5
         // oCalculator.getAutreX(); //INTERDIT: évidemment car cette méthode n'appartient pas à l'interface ICalculator ! (elle n'appartient qu'au type concret : MyCalculator_xxx).
 
+    }
+
+    private openView1() {
+      window.open("./view1.html");
     }
     
 }
