@@ -44,7 +44,7 @@ class MyCommonConfigurationClass {
          // NECESSITE bien sûr un css loader(lecture des css pour les intégrer au dit bundle) 
          //          + un style loader (rendre ces règles css exploitables par du html)
          [`${cssSubPath}/someCSS`]: [ //Mettre ici, tous les noms de css à bundler (doivent tous se trouver dans srcGlobalAssetsPath/cssSubPath).
-                                      "index_GlobalCSS"
+                                      "index" //index.css
                                     ] 
                                     .map(cssFileName => `${srcGlobalAssetsPath}/${cssSubPath}/${cssFileName}.css`)
                                    ,
