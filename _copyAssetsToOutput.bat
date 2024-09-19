@@ -40,11 +40,11 @@ xcopy "%srcGlobalAssetsPath%/%imgSubPath%" "%outputImgPath%" /e/s /d/i /y
 
 REM -------------- Recopie (à plat) des images SPÉCIFIQUES, se trouvant dans l'arborescence %srcAppRootPath%, ---------------
 REM                vers %outputImgPath% .
-@REM CALL :CopyFiles "%srcAppRootPath%" "%src_img_assets_to_copy%" "%outputImgPath%"
+CALL :CopyFiles "%srcAppRootPath%" "%src_img_assets_to_copy%" "%outputImgPath%"
 
 REM -------------- Recopie (à plat) de css SPÉCIFIQUES non bundlés, se trouvant dans l'arborescence %srcAppRootPath%, ---------------
 REM                vers %outputCssPath% .
-@REM CALL :CopyFiles "%srcAppRootPath%" "%src_css_assets_to_copy%" "%outputCssPath%"
+CALL :CopyFiles "%srcAppRootPath%" "%src_css_assets_to_copy%" "%outputCssPath%"
 
 
 
