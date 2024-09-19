@@ -5,9 +5,16 @@ class MyCommonConfigurationClass {
 
     const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
 
-    const rootSrcPath = "./_src";
-    const assetsPath = `${rootSrcPath}/_assets/`;
-    const outputPath = "./../_dist";
+    const srcRootPath = "./_src";
+    const outputRootPath = "./../_dist";
+
+    const jsSubPath = "js";
+    const outputAssetsSubPath = "_assets";
+    const srcGlobalAssetsSubPath = "_globalAssets";
+    const cssSubPath = "css";
+    const outputAssetsPath = `${outputRootPath}/${outputAssetsSubPath}`;
+    const srcGlobalAssetsPath = `${srcRootPath}/${srcGlobalAssetsSubPath}`;
+
 
     const oCommonConfig = {
 
@@ -16,36 +23,44 @@ class MyCommonConfigurationClass {
     
          // 1er bundle :  ici 1 seul fichier .ts + bien sûr indirectement ses dépendances (.ts & .js) éventuelles.
          //               Le nom du bundle une fois buildé, sera (cf. output.filename ci-dessous) :  
-         //                 allJS.bundle.js et il sera mis dans le sous-dossier js/
-         //                 du répertoire de build.    
+         //                 allJS.bundle.js et il sera mis dans le sous-dossier jsSubPath
+         //                 du répertoire : outputRootPath.    
          // Ce allJS.bundle.js sera bien sûr à inclure dans index.html, via <script src="...">.
          // NECESSITE bien sûr un TS loader(parse/transpile des TS pour les intégrer au bundle) 
-            "js/allJS": [
-              `${rootSrcPath}/app/index.ts`
-            ], 
+            [`${jsSubPath}/allJS`]: [
+                                      `${srcRootPath}/app/index.ts` //point d'entrée
+                                    ], 
     
     
          // 2eme bundle :  plusieurs régles .css, mergées en 1 bundle à partir de fichiers .css.
          //                  (remarque: lorsque doublon de règle css, la dernière apparue fait foi).
          //                Le nom du bundle une fois buildé, sera (cf. output.filename ci-dessous) :  
-         //                 allCSS.bundle.js et il sera mis dans le sous-dossier css/
-         //                 du répertoire de build.    
-         // Ce allCSS.bundle.js sera bien sûr à inclure dans index.html, via <script src="...">.
+         //                 someCSS.bundle.js et il sera mis dans le sous-dossier cssSubPath
+         //                 du répertoire : outputAssetsPath.    
+         // Ce someCSS.bundle.js sera bien sûr à inclure dans index.html, via <script src="...">.
          //  Remarque : bien que ce bundle à inclure contiennent du code javascript,
          //             les règles .css évoquées, feront bien leur effet sur l'html !
          // NECESSITE bien sûr un css loader(lecture des css pour les intégrer au dit bundle) 
          //          + un style loader (rendre ces règles css exploitables par du html)
-            "css/allCSS": [
-              `${assetsPath}/css/index_GlobalCSS.css` , 
-            ],
+         [`${cssSubPath}/someCSS`]: [ //Mettre ici, tous les noms de css à bundler (doivent tous se trouver dans srcGlobalAssetsPath/cssSubPath).
+                                      "index_GlobalCSS"
+                                    ] 
+                                    .map(cssFileName => `${srcGlobalAssetsPath}/${cssSubPath}/${cssFileName}.css`)
+                                   ,
     
       }
       ,output: {
-          path: oPathTool.resolve(__dirname, outputPath)        
-          ,filename: "[name].bundle.js" //[name]  = valeur de chacune des clefs de l'objet entry ci-dessus.
-                                        // Génèrera donc ces bundles :
-                                        //   ./../_dist/js/allJS.bundle.js
-                                        //   ./../_dist/css/allCSS.bundle.js //<<< Ok il suffira de l'inclure dans index.html via <script src="...">
+          path: oPathTool.resolve(__dirname, outputRootPath)        
+          // ,filename: "[name].bundle.js"
+          , filename: ({ chunk }) => { //Pour pouvoir conditionné le nommage et chemin desti. des bundles.
+            // console.log(chunk);
+            let outputBundleFile = "[name].bundle.js"; //[name]  = valeur de chacune des clefs de l'objet entry ci-dessus. Par ex. : `${jsSubPath}/allJS` .
+            if (!chunk.name.startsWith(jsSubPath)) {
+              outputBundleFile = `${outputAssetsPath}/${outputBundleFile}`;
+            }
+            console.log(outputBundleFile);
+            return outputBundleFile; //bundle généré dans outputRootPath
+          },                                        
       }
     
     
