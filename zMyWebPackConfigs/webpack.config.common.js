@@ -6,6 +6,7 @@ class MyCommonConfigurationClass {
     const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
 
     const srcRootPath = "./_src";
+    const srcAppRootPath = `${srcRootPath}/app`;
     const outputRootPath = "./../_dist";
 
     const jsSubPath = "js";
@@ -13,7 +14,7 @@ class MyCommonConfigurationClass {
     const srcGlobalAssetsSubPath = "_globalAssets";
     const cssSubPath = "css";
     const outputAssetsPath = `${outputRootPath}/${outputAssetsSubPath}`;
-    const srcGlobalAssetsPath = `${srcRootPath}/${srcGlobalAssetsSubPath}`;
+    const srcGlobalAssetsPath = `${srcAppRootPath}/${srcGlobalAssetsSubPath}`;
 
 
     const oCommonConfig = {
