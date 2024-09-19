@@ -2,3 +2,5 @@ _build
 _dist
 node_modules
 .vscode
+
+*.mp4
