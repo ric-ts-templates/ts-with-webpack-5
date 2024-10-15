@@ -1,22 +1,16 @@
 {
-  "name": "ts-model-project",
-  "version": "1.0.0",
-  "description": "TS model project",
-  "author": "Richard PAYET",
-  "license": "ISC",
   "scripts": {
     "_build_": "npm run copyAssetsToOutput && webpack --progress --profile --watch ",
     "b": "npm run _build_ -- --config ./zMyWebPackConfigs/webpack.config.dev.js --env MyEnvVarSiJeVeux=9",
     "bp": "npm run _build_ -- --config ./zMyWebPackConfigs/webpack.config.prod.js",
     "copyAssetsToOutput": ".\\_copyAssetsToOutput.bat"
   },
-  "types": "",
   "devDependencies": {
     "css-loader": "^7.1.2",
     "style-loader": "^4.0.0",
     "ts-loader": "^9.5.1",
     "tsconfig-paths-webpack-plugin": "^4.1.0",
-    "webpack": "^5.94.0",
+    "webpack": "^5.95.0",
     "webpack-cli": "^5.1.4"
   }
 }
